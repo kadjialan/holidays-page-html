@@ -1,6 +1,13 @@
+:root {
+    --line-border-fill: #12c1c1e6;
+    --line-border-empty: #e0e0e0 ;
+}
+
 * {
     box-sizing: border-box;
+   /*  outline: 1px red solid; */
 }
+
 
 body {
     display: flex;
@@ -12,47 +19,85 @@ body {
 }
 
 .container {
+text-align: center;
+}
+
+.progress-container {
     display: flex;
-    width: 90vw;
-}
-
-.panel {
-    background-size: auto 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 80vh;
-    border-radius: 50px;
-    color: antiquewhite;
-    cursor: pointer;
-    margin: 10px;
+    justify-content: space-between;
     position: relative;
-    flex: 0.5;
-    transition: flex 1s ease-in;
+    max-width: 100%;
+    margin-bottom: 30px;
+    width: 350px;
 }
 
-.panel h3 {
-    font-size: 24px;
+.progress-container::before {
+    content: '';
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    margin: 0;
-    opacity: 0;
+    background-color:var(--line-border-empty);
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 100%;
+    z-index: -1;
 }
 
-.panel.active {
-    flex: 5;
+.progress {
+    position: absolute;
+    background-color: var(--line-border-fill);
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 0%;
+    z-index: -1;
+    transition: 0.4s ease;
 }
 
-.panel.active h3 {
-    opacity: 1;
+.circle {
+    background-color: var(--line-border-empty);
+    color: #999;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #f0c4c473;
+    transition: o.4s ease;
 }
+
+.circle.active {
+    border-color:var(--line-border-fill) ;
+}
+
+.btn {
+    background-color: var(--line-border-fill);
+    color: #fff;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 8px 30px;
+    margin: 5px;
+    font-size: 14px;
+}
+
+.btn:active {
+transform: scale(0.98);
+}
+
+.btn:focus {
+    outline: 0;
+}
+
+.btn:disabled {
+    background-color: var(--line-border-empty);
+    cursor: not-allowed;
+}
+
 
 @media(max-width: 480px) {
-    .container {
-        width: 100vw;
-    }
     
-    .panel:nth-of-type(2) {
-        display: none;
-    }
 }
